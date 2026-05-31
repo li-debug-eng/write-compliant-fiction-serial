@@ -45,20 +45,26 @@ advanced_hooks:
 payoff_windows:
 deferred_answers:
 canon_questions:
-memory_patch:
+durable_changes_for_memory_update:
+  Long-range outline, hook, volume, arc, pacing, stage, or payoff decisions
+  that may need durable project memory updates if accepted by the user.
+  These are not final memory patches.
 optimization_updates:
 ```
 
 ## Handoff To Other Components
 
 - Send selected beats, pacing intent, payoff timing, and closing pressure to `continue-chapter`.
-- Send accepted stage summaries, hooks, payoff windows, and deferred answers to `memory-update`.
+- Send `durable_changes_for_memory_update` to `memory-update` when the user
+  accepts long-range direction, new hooks, payoff windows, deferred answers,
+  volume structure, stage summaries, pacing rules, or durable outline decisions.
 - Ask `continuity-check` to resolve canon questions before planning around them.
 - Ask `memory-manager` for the planning bundle before planning an established novel.
 
 ## Do Not Do
 
 - Do not draft full chapters inside this component.
+- Do not generate the final `memory_patch`; send durable candidates to `memory-update`.
 - Do not silently change established canon.
 - Do not make every chapter a climax or resolve every hook immediately.
 - Do not reuse another novel's pacing strategy unless the user explicitly requests it.

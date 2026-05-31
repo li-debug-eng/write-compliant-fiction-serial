@@ -4,7 +4,9 @@ Use these shared rules when checking, planning, continuing, revising, or persist
 
 ## Project Isolation
 
-Resolve one `novel_id` before reading canon. Use only that novel project's records. Never merge characters, relationships, rules, hooks, issues, optimization strategies, or preferences across novels.
+Resolve one `novel_id` before reading canon. Use only that novel project's
+records. Never merge characters, relationships, rules, hooks, issues,
+optimization strategies, or preferences across novels.
 
 ## Canon Priority
 
@@ -16,6 +18,11 @@ Apply this order:
 4. approved outlines and setting files;
 5. project memory and continuity records;
 6. inference.
+
+If the newest explicit user instruction conflicts with a recorded retcon or a
+durable canon decision already accepted in project memory, surface the conflict
+to the user before applying it. Do not silently override a recorded retcon or
+durable canon rule merely because the conflicting instruction is newer.
 
 When sources conflict, report the conflict. Preserve canon or record an explicit retcon. Do not silently overwrite history.
 
@@ -83,6 +90,7 @@ For downstream components, prefer:
 ```text
 novel_id:
 latest_chapter:
+story_stage:
 latest_handoff:
 current_location:
 protagonist_state:
@@ -94,5 +102,9 @@ knowledge_boundaries:
 hard_world_rules:
 next_pressure:
 ```
+
+Use `story_stage` to briefly capture the current volume, arc position, pacing
+stage, or reveal/payoff phase when known. Leave it blank if unknown rather than
+inventing.
 
 Keep the snapshot task-local. Retrieve earlier chapters only when verification requires them.

@@ -24,7 +24,21 @@ Review and remove:
 - dialogue where characters fully explain their motives to people who already know the context;
 - endings that teach the reader how to interpret the scene.
 
-These words and structures are not absolutely forbidden. Use them only when the exact sentence earns them and a more concrete choice would be worse.
+## Exception Scope
+
+The avoidance list is not a mechanical ban on every abstract word. A charged word may be used when the sentence earns it and a more concrete choice would weaken the prose.
+
+However, this exception does not generally apply to direct cognition or
+emotion-summary structures such as `他意识到`, `他忽然明白`, `他终于懂了`, or
+similar explanatory pivots. These should usually be replaced with observable
+action, delayed response, object handling, environmental pressure, incomplete
+dialogue, or changed behavior.
+
+Use direct cognition only when:
+
+- the realization itself is the scene action;
+- the sentence is brief and not followed by explanatory repetition;
+- no concrete external cue would carry the same meaning better.
 
 ## Shared Standard
 

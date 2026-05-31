@@ -1,11 +1,26 @@
 ---
 name: write-compliant-fiction-serial
-description: "Route and orchestrate modular workflows for original simplified-Chinese serial fiction: continuation, mature-style revision, publication-risk review, continuity checking, per-novel project-memory management, task-end memory updates, and outline planning. Preserve readable, publishable prose; isolate each novel's canon and preferences; reduce AI-like explanation; recover from compacted context; and refuse review-evasion or close imitation. Use for 小说正文, 续写, 接章, 润色, 去AI味, 文风成熟化, 合规审查, 风险改写, 拒稿修改, 连贯性检查, 设定检查, 时间线检查, 伏笔检查, 创作记忆, 单部小说记忆, 上下文恢复, 章节大纲, 分卷大纲, 节奏规划, or long-form original web-fiction maintenance."
+description: "Route and orchestrate modular workflows for original simplified-Chinese serial fiction: continuation, mature-style revision, publication-risk review, continuity checking, per-novel project-memory management, task-end memory updates, and outline planning. Preserve readable, publishable prose; isolate each novel's canon and preferences; reduce AI-like explanation; recover from compacted context; and refuse review-evasion or close imitation. Use for 小说正文, 续写, 接章, 润色, 去AI味, 文风成熟化, 合规审查, 风险改写, 拒稿修改, 连贯性检查, 设定检查, 时间线检查, 伏笔检查, 创作记忆, 单部小说记忆, 上下文恢复, 章节大纲, 分卷大纲, 节奏规划, or long-form original web-fiction maintenance. Do not use for translation-only, English-language fiction, nonfiction editing, generic copywriting, or unrelated code tasks."
 ---
 
 # Modular Fiction Serial Router
 
-Write original, readable, publishable simplified-Chinese serial fiction. Act as an orchestrator: identify the novel project, identify the task, load only the needed expert components and references, pass compact handoffs, and verify the requested artifact.
+Write original, readable, publishable simplified-Chinese serial fiction.
+Act as an orchestrator: identify the novel project, identify the task, load only
+the needed expert components and references, pass compact handoffs, and verify
+the requested artifact.
+
+## Do Not Use When
+
+Do not use this skill for:
+
+- code writing, debugging, software engineering, or repository maintenance tasks unrelated to this fiction skill;
+- translation-only tasks where the user only wants direct translation;
+- English fiction unless the user explicitly asks for simplified-Chinese adaptation or bilingual planning for a Chinese serial;
+- nonfiction essays, academic writing, business writing, marketing copy, resumes, emails, or generic copywriting;
+- casual roleplay unrelated to an original serial-fiction project;
+- summarizing unrelated documents that are not part of a serial-fiction project;
+- image generation or visual design tasks unless they directly support a fiction project outline or reference note.
 
 ## Isolate Every Novel Project
 
@@ -23,7 +38,10 @@ projects/
    └─ user-preferences.md
 ```
 
-Use [skills/memory-manager.md](skills/memory-manager.md) to identify the current novel and load the correct project files. If the novel cannot be inferred safely, ask the user to choose or create a project. Never mix characters, canon, issue logs, optimization strategies, or preferences between novels.
+Use [skills/memory-manager.md](skills/memory-manager.md) to identify the current
+novel and load the correct project files. If the novel cannot be inferred
+safely, ask the user to choose or create a project. Never mix characters,
+canon, issue logs, optimization strategies, or preferences between novels.
 
 ## Route The Request
 
@@ -35,9 +53,33 @@ Use [skills/memory-manager.md](skills/memory-manager.md) to identify the current
 | Check characters, timeline, setting, locations, hooks, or knowledge boundaries | [skills/continuity-check.md](skills/continuity-check.md) | Ask `memory-manager` for the canon bundle. Build a memory patch for accepted retcons, record repairs, or repeated issues. |
 | Consolidate task-end canon, preferences, issues, or optimization learning | [skills/memory-update.md](skills/memory-update.md) | Pass the final patch to `memory-manager` for correct-project persistence or copyable fallback output. |
 | Identify a novel project, recover context, manage project files, or persist a patch | [skills/memory-manager.md](skills/memory-manager.md) | Use as a support component before or after other work. |
-| Plan chapters, arcs, pacing, conflicts, hooks, or payoffs | [skills/outline-planning.md](skills/outline-planning.md) | Ask `memory-manager` for the planning bundle. For an existing serial, check continuity first. Build a memory patch for accepted long-range decisions. |
+| Plan chapters, arcs, pacing, conflicts, hooks, or payoffs | [skills/outline-planning.md](skills/outline-planning.md) | Ask `memory-manager` for the planning bundle. For an existing serial, check continuity first. Send accepted long-range decisions to `memory-update`. |
 
 Use one component when one component is enough. Do not run every component by default.
+
+## Resolve Ambiguous Requests
+
+When the user request is ambiguous:
+
+1. If the user provides prose text and does not mention review, platform risk,
+   canon, timeline, outline, or memory, default to
+   [skills/revise-style.md](skills/revise-style.md).
+2. If the user mentions 审核, 合规, 风险, 违规, 拒稿, 平台, 发布, 被打回, or
+   sensitive content, route to
+   [skills/compliance-review.md](skills/compliance-review.md).
+3. If the user mentions 设定, 前后不一致, 时间线, 人物关系, 人物知道什么, 伏笔,
+   bug, 矛盾, or 逻辑问题, route to
+   [skills/continuity-check.md](skills/continuity-check.md).
+4. If the user asks `这章怎么样`, `帮我评价`, or `你觉得如何`, provide a
+   concise diagnostic response first. Only revise, rewrite, or update memory
+   if the user asks for that.
+5. If the text belongs to an existing novel project, use
+   [skills/memory-manager.md](skills/memory-manager.md) only for the minimal
+   relevant bundle. Do not load full project memory unless needed.
+6. If two or more interpretations are equally likely and the next action would
+   substantially change the output, ask one concise clarification question
+   instead of running every component.
+7. Never use ambiguity as a reason to run all components by default.
 
 ## Recover Context
 
@@ -86,6 +128,21 @@ Use MCP calls conservatively:
 
 If MCP is unavailable, output a copyable `## Memory Patch`. Do not claim that memory was persisted unless an actual local file operation succeeds.
 
+## Fallback Memory Use
+
+When MCP tools and local file writes are unavailable:
+
+1. Do not claim that memory was saved.
+2. Output a copyable `## Memory Patch`.
+3. Tell the user to save that patch in their project files or paste it at the start of the next related task.
+4. If the user later provides a previous Memory Patch, treat it as temporary project memory for the current session.
+5. If multiple patches are provided, apply the newest explicit user instruction
+   first, then merge durable canon updates, issue-log updates, and
+   optimization-log updates.
+6. Do not merge patches across different `novel_id` values.
+7. If a patch lacks `novel_id`, ask for the target novel unless the current project is unambiguous.
+8. Only say memory was persisted if MCP append or real local file writing actually succeeded.
+
 ## Pass Explicit Handoffs
 
 Pass only fields needed downstream:
@@ -106,6 +163,7 @@ changed_facts:
 durable_preferences:
 issue_updates:
 optimization_updates:
+durable_changes_for_memory_update:
 memory_patch:
 next_handoff:
 ```
@@ -118,7 +176,11 @@ Common handoffs:
 - `continue-chapter -> revise-style`: draft, immutable facts, requested tone, and length target.
 - `compliance-review -> revise-style`: safe rewrite, preserved plot function, and remaining author decisions.
 - `continue-chapter | revise-style | compliance-review | continuity-check | outline-planning -> memory-update`: durable changes, issue updates, optimization updates, recent summary, and next handoff.
+- `outline-planning -> memory-update`: accepted
+  `durable_changes_for_memory_update`; these are candidates, not final patches.
 - `memory-update -> memory-manager`: structured memory patch, target `novel_id`, and persistence reason.
+
+Only [skills/memory-update.md](skills/memory-update.md) generates the final `memory_patch`.
 
 ## Orchestrate Common Workflows
 

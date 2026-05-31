@@ -2,7 +2,9 @@
 
 ## Purpose
 
-Manage isolated long-term memory for one novel project at a time. Resolve the target novel, provide task-specific memory bundles, and persist or return structured patches without mixing projects.
+Manage isolated long-term memory for one novel project at a time. Resolve the
+target novel, provide task-specific memory bundles, and persist or return
+structured patches without mixing projects.
 
 ## Use When
 
@@ -117,7 +119,9 @@ fixed: yes | no
 avoidance_rule:
 ```
 
-Optimization entries may cover prose style, pacing, character handling, relationship handling, and chapter endings. Prioritize proven project-specific strategies during later continuation, revision, and planning.
+Optimization entries may cover prose style, pacing, character handling,
+relationship handling, and chapter endings. Prioritize proven project-specific
+strategies during later continuation, revision, and planning.
 
 ### Use MCP When Available
 
@@ -144,6 +148,18 @@ Call `search_novel_memory` only for a narrow uncertainty. Use `append_memory_pat
 3. If actual workspace editing is explicitly available and used, report the exact files written.
 4. If MCP is unavailable and no local write actually succeeds, output the copyable `## Memory Patch`.
 5. Never imply persistence merely because a patch was generated.
+
+### Fallback Memory Use
+
+When MCP tools and local file writes are unavailable:
+
+1. Do not claim that memory was saved.
+2. Output a copyable `## Memory Patch`.
+3. Tell the user to save that patch in their project files or paste it at the start of the next related task.
+4. If the user later provides a previous Memory Patch, treat it as temporary project memory for the current session.
+5. If multiple patches are provided, apply the newest explicit user instruction first, then merge durable canon updates, issue-log updates, and optimization-log updates.
+6. Do not merge patches across different `novel_id` values.
+7. If a patch lacks `novel_id`, ask for the target novel unless the current project is unambiguous.
 
 ## Output Contract
 

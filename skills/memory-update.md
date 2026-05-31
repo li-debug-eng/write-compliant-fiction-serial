@@ -2,7 +2,9 @@
 
 ## Purpose
 
-At the end of a concrete task, consolidate durable changes from selected components into one structured per-novel memory patch. This component builds the patch; it does not choose the novel project or claim persistence.
+At the end of a concrete task, consolidate durable changes from selected
+components into one structured per-novel memory patch. This component builds
+the patch; it does not choose the novel project or claim persistence.
 
 ## Use When
 
@@ -15,11 +17,14 @@ Do not run for ordinary sentence-level polish with no durable learning.
 ## Required Context
 
 - `novel_id` and `novel_name` resolved by `memory-manager`.
-- Durable changes produced by the completed task: canon, character state, timeline, hooks, long-range direction, preferences, repeated issues, verified optimizations, recent summary, or next handoff.
+- Durable changes produced by the completed task: canon, character state,
+  timeline, hooks, long-range direction, preferences, repeated issues,
+  verified optimizations, recent summary, or next handoff.
 
 ## Optional Context
 
 - Existing task-specific memory bundle from `memory-manager`.
+- `durable_changes_for_memory_update` from planning or other components when the user accepts durable project decisions.
 - User correction history from the current task.
 - Accepted retcons and output verification results.
 
@@ -27,6 +32,7 @@ Do not run for ordinary sentence-level polish with no durable learning.
 
 1. Reject the update if `novel_id` is missing. Ask `memory-manager` to resolve the project first.
 2. Include only durable changes:
+   - accepted `durable_changes_for_memory_update` candidates;
    - canon, character state, relationship state, timeline, location, rules, resources, hooks, or chapter index changes;
    - accepted long-range direction;
    - durable user preferences;
