@@ -1,88 +1,95 @@
 # Memory Update
 
-## Responsibility
+## Purpose
 
-Read, create, and update project recovery files. Persist durable preferences, recent summaries, changed canon, and the next writing handoff. Do not write chapter prose or perform a full continuity audit.
+At the end of a concrete task, consolidate durable changes from selected components into one structured per-novel memory patch. This component builds the patch; it does not choose the novel project or claim persistence.
 
-## Required Inputs
+## Use When
 
-- Existing `创作档案/创作记忆.txt` and `创作档案/连贯性记录.txt` when available.
-- `changed_facts`, accepted retcons, recent chapter summaries, active hooks, next handoff, and output verification.
-- User feedback that may become a durable, local, or pending preference.
+- Drafting, planning, rewriting, continuity repair, or accepted retcons change durable project state.
+- User feedback should become a reusable project preference, issue record, or verified optimization strategy.
+- The user explicitly says `以后都这样写`, `记住这个问题`, or `下次避免这种写法`.
 
-## Read Recovery
+Do not run for ordinary sentence-level polish with no durable learning.
 
-When conversation context is incomplete:
+## Required Context
 
-1. Read `创作记忆.txt` first.
-2. Read `连贯性记录.txt`.
-3. Return a compact recovery payload for downstream components.
+- `novel_id` and `novel_name` resolved by `memory-manager`.
+- Durable changes produced by the completed task: canon, character state, timeline, hooks, long-range direction, preferences, repeated issues, verified optimizations, recent summary, or next handoff.
 
-## Learn From Feedback
+## Optional Context
 
-For each user correction or preference:
+- Existing task-specific memory bundle from `memory-manager`.
+- User correction history from the current task.
+- Accepted retcons and output verification results.
 
-1. Apply the requested fix to the current artifact through the relevant component.
-2. Infer the smallest reusable rule preventing recurrence.
-3. Classify it:
-   - `durable`: future work in this project;
-   - `local`: named chapter, scene, character, or request only;
-   - `pending`: scope unclear, record without broad enforcement.
-4. Prefer the newest explicit instruction when rules conflict.
-5. Mark older conflicting rules as `replaced`; do not silently delete them.
-6. Keep learning project-level. Modify the router or components only when the user explicitly requests a skill update.
+## Procedure
 
-## Write Recovery Files
-
-Maintain:
-
-```text
-创作档案/
-├── 创作记忆.txt
-└── 连贯性记录.txt
-```
-
-Keep `创作记忆.txt` compact:
-
-```text
-书名与更新时间
-最新正文
-快速恢复摘要
-输出契约
-用户偏好与自动优化
-不可破坏规则
-当前阶段摘要
-最近章节摘要
-待回收线索
-下一次续写交接
-```
-
-Keep `连贯性记录.txt` detailed:
-
-```text
-更新时间
-主角档案
-能力规则
-主要人物
-已发生事件
-未解线索
-硬设定
-文风执行规则
-下一章衔接
-```
-
-Summarize older chapters by arc. Keep only recent chapters in detail. Do not copy full prose into recovery files.
+1. Reject the update if `novel_id` is missing. Ask `memory-manager` to resolve the project first.
+2. Include only durable changes:
+   - canon, character state, relationship state, timeline, location, rules, resources, hooks, or chapter index changes;
+   - accepted long-range direction;
+   - durable user preferences;
+   - repeated or explicitly remembered problems;
+   - optimization strategies that were effective or explicitly preferred;
+   - next-time instructions needed for continuation.
+3. Exclude ordinary wording edits and one-time request-local constraints.
+4. For user feedback, infer the smallest reusable rule. Classify it as `durable`, `local`, or `pending`.
+5. Mark superseded preferences as `replaced`; do not silently delete them.
+6. Format a single structured patch.
+7. Pass the patch and a concise reason to `memory-manager`.
 
 ## Output Contract
 
 Return:
 
-```text
-recovery_payload:
-memory_patch:
-continuity_record_patch:
-durable_preferences:
-replaced_preferences:
-next_handoff:
-files_updated:
+```md
+## Memory Patch
+
+Novel ID:
+Novel Name:
+
+### Project Memory Updates
+- ...
+
+### Continuity Updates
+- ...
+
+### Character State Updates
+- ...
+
+### Chapter Index Updates
+- ...
+
+### User Preference Updates
+- ...
+
+### Issue Log Updates
+- ...
+
+### Optimization Log Updates
+- ...
+
+### Next-Time Instructions
+- ...
 ```
+
+Also return:
+
+```text
+patch_reason:
+update_required: yes | no
+excluded_short_term_items:
+```
+
+## Handoff To Other Components
+
+- Receive durable changes from `continue-chapter`, `revise-style`, `compliance-review`, `continuity-check`, or `outline-planning`.
+- Send `novel_id`, `memory_patch`, and `patch_reason` to `memory-manager`.
+
+## Do Not Do
+
+- Do not choose a novel project by guesswork.
+- Do not write chapter prose or perform a full continuity audit.
+- Do not persist speculative facts, one-time requests, or ordinary wording changes as long-term memory.
+- Do not claim that files or MCP memory were updated.

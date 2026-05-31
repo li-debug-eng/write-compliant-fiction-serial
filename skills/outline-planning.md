@@ -1,26 +1,36 @@
 # Outline Planning
 
-## Responsibility
+## Purpose
 
-Plan chapters, arcs, pacing, conflict escalation, choices, consequences, hooks, and payoff timing. Do not draft full prose or silently change established canon.
+Plan chapters, arcs, pacing, conflict escalation, choices, consequences, hooks, and payoff timing without drafting full prose.
 
-## Required Inputs
+## Use When
 
-- User goal: chapter beats, arc outline, volume outline, pacing repair, or hook planning.
-- `canon_snapshot`, active hooks, character knowledge boundaries, and world limits.
-- Desired scope, genre, tone, relationship emphasis, and target chapter range.
+- The user requests 章节大纲, 分卷大纲, 节奏规划, hook planning, payoff planning, or pacing repair.
+- A new serial needs an original premise and opening direction.
 
-If planning a new novel with no canon, establish an original adult protagonist, supporting cast, world rules, core conflict, relationship line, volume direction, and opening beats.
+## Required Context
 
-## Planning Method
+- `novel_id` and the planning bundle from `memory-manager` for an existing novel.
+- User goal: scope, genre, tone, chapter range, relationship emphasis, and desired pacing.
+- For an existing serial: `canon_snapshot`, active hooks, knowledge boundaries, world limits, and current stage.
 
-1. Define the stage goal and the protagonist's concrete short-term need.
-2. Break the range into beats with goal, pressure, action, consequence, and closing hook.
-3. Alternate pressure with functional breathing room. Let daily life reveal cost, relationship, resource, or future pressure.
-4. Advance planted hooks gradually. Do not pay off every mystery immediately.
-5. Respect power progression and knowledge boundaries.
-6. Mark new hooks and intended payoff windows.
-7. Identify answers that must remain deferred.
+## Optional Context
+
+- Recovery payload from `memory-update`.
+- Targeted canon search results from `continuity-check`.
+- User priorities for specific conflicts, relationships, or payoffs.
+
+## Procedure
+
+1. For a new novel, establish an original protagonist, supporting cast, world rules, core conflict, relationship line, volume direction, and opening beats.
+2. For an existing serial, preserve fixed canon and retrieve unresolved questions before planning.
+3. Define the stage goal and the protagonist's concrete short-term need.
+4. Break the range into beats with goal, pressure, action, consequence, and closing hook.
+5. Alternate pressure with functional breathing room. Let daily life reveal cost, relationship, resources, or future pressure.
+6. Advance planted hooks gradually. Do not pay off every mystery immediately.
+7. Respect power progression and knowledge boundaries.
+8. Mark new hooks, payoff windows, and answers that should remain deferred.
 
 ## Output Contract
 
@@ -36,6 +46,19 @@ payoff_windows:
 deferred_answers:
 canon_questions:
 memory_patch:
+optimization_updates:
 ```
 
-Pass selected beats to continuation. Pass accepted stage summaries, hooks, payoff windows, and deferred answers to memory update.
+## Handoff To Other Components
+
+- Send selected beats, pacing intent, payoff timing, and closing pressure to `continue-chapter`.
+- Send accepted stage summaries, hooks, payoff windows, and deferred answers to `memory-update`.
+- Ask `continuity-check` to resolve canon questions before planning around them.
+- Ask `memory-manager` for the planning bundle before planning an established novel.
+
+## Do Not Do
+
+- Do not draft full chapters inside this component.
+- Do not silently change established canon.
+- Do not make every chapter a climax or resolve every hook immediately.
+- Do not reuse another novel's pacing strategy unless the user explicitly requests it.

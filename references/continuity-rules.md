@@ -2,6 +2,10 @@
 
 Use these shared rules when checking, planning, continuing, revising, or persisting a serial-fiction project.
 
+## Project Isolation
+
+Resolve one `novel_id` before reading canon. Use only that novel project's records. Never merge characters, relationships, rules, hooks, issues, optimization strategies, or preferences across novels.
+
 ## Canon Priority
 
 Apply this order:
@@ -19,33 +23,32 @@ When sources conflict, report the conflict. Preserve canon or record an explicit
 
 ### Protagonist
 
-- identity, age, adult/minor status;
-- appearance keywords and voice;
-- values, desire, flaw, and action style;
-- ability rules, costs, and hard limits;
-- relationship state and growth direction;
-- current location, resources, items, injuries, and power level.
+- identity, age, adult/minor status, appearance keywords, and voice;
+- values, concrete needs, flaws, and habitual response under pressure;
+- ability rules, costs, hard limits, injuries, resources, items, and power level;
+- current location, relationship state, and unfinished obligations.
 
-### Characters
+### Characters And Relationships
 
-- identity and relationship to protagonist;
-- personality, voice, and current goal;
+- identity, voice, current goal, and relationship to the protagonist;
 - location and timeline participation;
 - adult/minor status when relevant;
-- knowledge boundary: what the character knows, when they learned it, and what remains hidden.
+- before-and-after relationship state for each meaningful scene;
+- knowledge boundary: what a character knows, when they learned it, and what remains hidden.
 
 ### Timeline And Location
 
 - event order and elapsed time;
 - travel feasibility;
 - day, season, deadline, and recovery time when relevant;
-- character location before and after each important scene.
+- each important character's location before and after a scene;
+- the exact handoff from the preceding chapter to the next chapter.
 
 ### World Rules
 
 - institutions, factions, professions, schools, families, and hierarchy;
 - power progression, resource economy, technology, magic, or system limits;
-- canon facts that must not contradict later convenience.
+- hard rules that later convenience must not contradict.
 
 ### Hooks And Payoffs
 
@@ -62,12 +65,25 @@ knowledge_holders:
 
 Do not confuse unresolved mystery with contradiction. Advance hooks in partial steps and preserve promised payoff logic.
 
+## Repair Priority
+
+When a contradiction exists, prefer the smallest coherent repair:
+
+1. clarify wording without changing facts;
+2. adjust a local action, line, or transition;
+3. repair a record that was summarized incorrectly;
+4. propose an explicit retcon only when local repair cannot work.
+
+Do not rewrite unrelated scenes merely because a smaller fix feels less dramatic.
+
 ## Compact Canon Snapshot
 
 For downstream components, prefer:
 
 ```text
+novel_id:
 latest_chapter:
+latest_handoff:
 current_location:
 protagonist_state:
 relationship_state:
