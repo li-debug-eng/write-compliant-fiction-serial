@@ -230,7 +230,7 @@ git -C "$HOME\.codex\skills\write-compliant-fiction-serial" pull
 
 ### Claude Code
 
-**方式一：克隆安装**
+**用户级安装（全局可用）：**
 
 macOS / Linux:
 
@@ -246,15 +246,7 @@ git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git `
   "$env:USERPROFILE\.claude\skills\write-compliant-fiction-serial"
 ```
 
-**方式二：在 Claude Code 会话中安装**
-
-在 Claude Code 中输入：
-
-```text
-/install write-compliant-fiction-serial
-```
-
-或直接注册为项目级 Skill：
+**项目级安装（仅当前项目可用）：**
 
 ```bash
 # 在某小说项目根目录下
@@ -271,6 +263,6 @@ git -C "$HOME/.claude/skills/write-compliant-fiction-serial" pull
 
 **使用：**
 
-在 Claude Code 会话中，通过 `/write-compliant-fiction-serial` 或直接描述任务（如"续写下一章"、"润色这段"、"检查连贯性"）来触发 Skill。Claude Code 会自动匹配并加载该 Skill。
+在 Claude Code 会话中通过 `/write-compliant-fiction-serial` 调用，或直接描述任务（如"续写下一章"、"润色这段"、"检查连贯性"），Claude Code 会自动匹配并加载该 Skill。
 
-> **注意：** 本 Skill 同时兼容 OpenAI Codex CLI 和 Claude Code。`SKILL.md` 的 YAML frontmatter 采用 Codex 格式（`name` + `description`），同时满足 Claude Code 的 Skill 加载要求。`skills/`、`references/` 目录对两个平台通用。`agents/openai.yaml` 仅用于 Codex CLI，Claude Code 会忽略该文件。
+> **兼容性说明：** 本 Skill 同时兼容 OpenAI Codex CLI 和 Claude Code。`SKILL.md` 的 YAML frontmatter 采用 Codex 格式（`name` + `description`），同时满足 Claude Code 的 Skill 加载要求。`skills/`、`references/` 目录对两个平台通用。`agents/openai.yaml` 仅用于 Codex CLI，Claude Code 会忽略该文件。
