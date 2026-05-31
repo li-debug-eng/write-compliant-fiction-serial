@@ -1,8 +1,8 @@
 # write-compliant-fiction-serial
 
-一个用于简体中文连载小说创作、续写、润色、审查与长期维护的模块化 Codex Skill。
+一个用于简体中文连载小说创作、续写、润色、审查与长期维护的模块化 Codex / Claude Code Skill。
 
-它采用“主 Skill 路由 + 专家组件 + 共享 references + 单部小说独立记忆”的结构。主路由只加载当前任务需要的组件，不会无条件串联全部流程。
+它采用"主 Skill 路由 + 专家组件 + 共享 references + 单部小说独立记忆"的结构。主路由只加载当前任务需要的组件，不会无条件串联全部流程。
 
 ## 目录结构
 
@@ -215,6 +215,8 @@ memory-manager/select+read planning bundle
 
 ## 安装
 
+### OpenAI Codex CLI
+
 ```powershell
 git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git `
   "$HOME\.codex\skills\write-compliant-fiction-serial"
@@ -225,3 +227,50 @@ git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git `
 ```powershell
 git -C "$HOME\.codex\skills\write-compliant-fiction-serial" pull
 ```
+
+### Claude Code
+
+**方式一：克隆安装**
+
+macOS / Linux:
+
+```bash
+git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git \
+  "$HOME/.claude/skills/write-compliant-fiction-serial"
+```
+
+Windows PowerShell:
+
+```powershell
+git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git `
+  "$env:USERPROFILE\.claude\skills\write-compliant-fiction-serial"
+```
+
+**方式二：在 Claude Code 会话中安装**
+
+在 Claude Code 中输入：
+
+```text
+/install write-compliant-fiction-serial
+```
+
+或直接注册为项目级 Skill：
+
+```bash
+# 在某小说项目根目录下
+mkdir -p .claude/skills
+git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git \
+  .claude/skills/write-compliant-fiction-serial
+```
+
+**更新：**
+
+```bash
+git -C "$HOME/.claude/skills/write-compliant-fiction-serial" pull
+```
+
+**使用：**
+
+在 Claude Code 会话中，通过 `/write-compliant-fiction-serial` 或直接描述任务（如"续写下一章"、"润色这段"、"检查连贯性"）来触发 Skill。Claude Code 会自动匹配并加载该 Skill。
+
+> **注意：** 本 Skill 同时兼容 OpenAI Codex CLI 和 Claude Code。`SKILL.md` 的 YAML frontmatter 采用 Codex 格式（`name` + `description`），同时满足 Claude Code 的 Skill 加载要求。`skills/`、`references/` 目录对两个平台通用。`agents/openai.yaml` 仅用于 Codex CLI，Claude Code 会忽略该文件。
