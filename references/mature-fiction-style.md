@@ -2,18 +2,6 @@
 
 Read this reference before drafting prose, revising prose style, or removing AI-like writing.
 
-## Scene Preparation
-
-Before drafting, identify:
-
-1. surface conflict;
-2. each character's immediate desire;
-3. what each character avoids saying;
-4. the action, object, or environmental change carrying the emotional movement;
-5. the final emotional shift and narrative pressure.
-
-If the user asks to see planning first, show exactly five concise notes. Otherwise keep the preparation internal.
-
 ## Prose Rules
 
 - Do not routinely name emotions directly. Avoid lines such as `他很难过`, `她很生气`, `他意识到`, `他忽然明白`, or `他心中一沉` when an action, pause, or object can show the same thing.
@@ -38,14 +26,6 @@ Review and remove:
 
 These words and structures are not absolutely forbidden. Use them only when the exact sentence earns them and a more concrete choice would be worse.
 
-## Revision Pass
+## Shared Standard
 
-After drafting:
-
-1. Mark each direct emotion explanation. Remove it if the surrounding action already communicates it.
-2. Mark each dialogue explanation. Shorten it until characters sound like they have history, caution, pride, or unfinished business.
-3. Mark each descriptive paragraph. Keep only details that affect the scene.
-4. Scan endings for summary or moralizing language. Replace with an action, object, line, or unresolved pressure.
-5. Read for repeated sentence shapes. Vary rhythm without adding ornament.
-
-Deliver the revised version, not the unedited draft, unless the user explicitly asks for editing notes.
+Apply these rules during drafting and revision. Keep task-specific workflow in the selected component rather than this reference.

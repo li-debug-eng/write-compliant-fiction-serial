@@ -1,182 +1,97 @@
 ---
 name: write-compliant-fiction-serial
-description: Create, outline, continue, revise, polish, and consistency-check simplified-Chinese serial fiction while reducing publication risk. Write restrained, natural prose with subtext and lived-in detail; plan scene conflict before drafting; remove AI-like exposition during revision. Learn durable project-level preferences from user feedback, maintain compact rolling summaries and continuity snapshots, and recover reliably when conversation context is limited. Use when the user requests 小说设定, 世界观, 人物档案, 分卷大纲, 章节大纲, 小说正文, 场景正文, 续写, 润色, 文风优化, 去AI味, 不过审章节修改, 合规改写, 审核风险预检, 主角统一, 人设一致, 时间线检查, 伏笔回收, 连贯性总结, 上下文恢复, or copyright-risk reduction for an original web novel.
+description: "Route and orchestrate modular workflows for simplified-Chinese serial fiction: continuation, mature-style revision, publication-risk review, continuity checking, project-memory maintenance, and outline planning. Preserve original, readable, publishable prose; reduce AI-like explanation; learn project-level preferences; recover from compacted context; and refuse review-evasion or close imitation. Use for 小说正文, 续写, 接章, 润色, 去AI味, 文风成熟化, 合规审查, 风险改写, 拒稿修改, 连贯性检查, 设定检查, 时间线检查, 伏笔检查, 创作记忆, 上下文恢复, 章节大纲, 分卷大纲, 节奏规划, or long-form original web-fiction maintenance."
 ---
 
-# Compliant Fiction Serial Writer
+# Modular Fiction Serial Router
 
-Write readable, original, publishable simplified-Chinese fiction. Help the author improve the story itself rather than disguise risky material or bypass review.
+Write original, readable, publishable simplified-Chinese serial fiction. Act as a router: select only the components required by the request, pass explicit handoffs between them, and avoid loading unrelated instructions.
 
-## Gather Context
+## Route The Request
 
-1. Search the workspace for existing outlines, character sheets, project memory, continuity notes, and chapter files before continuing or revising a novel.
-2. Read `创作档案/创作记忆.txt` first when it exists. Then read `创作档案/连贯性记录.txt`, the latest chapter tail, and only the earlier material needed to resolve continuity.
-3. Create missing memory files when beginning a continuing serial. Use [references/project-memory-template.md](references/project-memory-template.md) for project memory and [references/continuity-template.md](references/continuity-template.md) for detailed continuity.
-4. Treat existing prose, approved setting files, and recorded user constraints as canon unless the user explicitly requests a retcon.
-5. Extract the protagonist profile, character relationships, timeline, locations, world rules, unresolved events, planted hooks, promised payoffs, and durable user preferences.
-6. If the user's request conflicts with established canon or a recorded preference, state the conflict and choose one path:
-   - Preserve canon and adjust the plot.
-   - Record an explicit retcon and continue from the new version.
-   - Apply the newest explicit user instruction and mark the older preference as replaced.
+| User intent | Required component | Add components only when needed |
+| --- | --- | --- |
+| Continue, write the next chapter, or draft a scene | [skills/continue-chapter.md](skills/continue-chapter.md) | Add continuity checking before drafting for an existing serial; add style revision after drafting; add memory update after accepted workspace changes; add compliance review only when content raises risk |
+| Polish, compress, mature the prose, or remove AI-like writing | [skills/revise-style.md](skills/revise-style.md) | Add continuity checking when edits may alter facts; add memory update when a durable preference or canon fact changes |
+| Review risk, rewrite rejected material, or preflight publication | [skills/compliance-review.md](skills/compliance-review.md) | Add style revision after safe rewriting; add continuity checking when plot or relationship facts change |
+| Check characters, timeline, world rules, locations, hooks, or knowledge boundaries | [skills/continuity-check.md](skills/continuity-check.md) | Add memory update after an accepted retcon or record repair |
+| Update summaries, recover context, or persist user preferences | [skills/memory-update.md](skills/memory-update.md) | Use as a supporting component after drafting, revision, outlining, or retcon |
+| Plan chapters, arcs, pacing, conflict, or payoff placement | [skills/outline-planning.md](skills/outline-planning.md) | Add continuity checking before planning an existing serial; add memory update after the plan is accepted or stored |
 
-## Learn From Feedback
+If one component fully solves the request, use one. Do not chain every component by default.
 
-Treat every user correction, complaint, or preference as a candidate optimization for the current fiction project.
+## Recover Context Before Routing
 
-1. Apply the requested fix to the current output or artifact.
-2. Infer the smallest reusable rule that would prevent the same issue later.
-3. Classify the rule:
-   - `durable`: apply to future work in the current project, such as chapter length, file format, prose density, pacing, viewpoint, or summary requirements;
-   - `local`: apply only to the named chapter, scene, character, or request;
-   - `pending`: record but do not enforce globally when the intended scope is unclear.
-4. Append or update the rule in `创作档案/创作记忆.txt`. Record the user's wording briefly, the normalized rule, scope, and status.
-5. Prefer the newest explicit instruction when rules conflict. Mark superseded rules as `replaced`; do not silently delete them.
-6. Do not rewrite this skill's own files after ordinary writing feedback. Learn at project level. Modify the skill itself only when the user explicitly requests a skill update.
+For an existing serial:
 
-Examples:
+1. Search the workspace for outlines, chapter files, `创作档案/创作记忆.txt`, and `创作档案/连贯性记录.txt`.
+2. Read `创作记忆.txt` first when it exists.
+3. Read `连贯性记录.txt`, the latest chapter tail, and only the earlier material required by the selected components.
+4. Treat existing prose, approved setting files, and recorded durable preferences as canon unless the user requests a retcon.
+5. If required context is missing, retrieve it from workspace files or ask a concise question. Do not invent established facts.
 
-- User says `每章最少2000字，上不超过5000字`: record a durable chapter-length rule and verify with a deterministic count after drafting.
-- User says `简介要有活人感`: record a durable style preference for blurbs and nearby promotional copy; do not automatically force the same register onto every battle scene.
-- User says `这一章少写修炼，多写人物互动`: record a local rule unless the user broadens it.
+## Use Explicit Handoffs
 
-## Choose The Mode
+Pass a compact handoff object between components. Include only fields needed downstream:
 
-- For a new novel package: provide title ideas, genre positioning, a one-sentence hook, protagonist and supporting-character profiles, world rules, core conflict, relationship line, volume outline, first 10 chapter beats, and a brief risk precheck.
-- For `续写`, `下一章`, or a requested chapter: write one complete chapter that inherits the latest hook and preserves continuity.
-- For `大纲`: provide chapter or volume beats with goals, conflict escalation, choices, consequences, payoffs, and hooks.
-- For `人物设定`: define identity, adult/minor status, desire, flaw, values, voice, action style, boundaries, relationships, and growth direction.
-- For `润色`, `修改`, or `优化`: identify the main issue briefly, then provide revised usable prose.
-- For an unpublished or rejected chapter: identify likely risk categories, explain the risky passages at a high level, state the rewrite principle, and provide a genuinely lower-risk rewrite.
-- For consistency checking: list contradictions first, then give the smallest coherent fixes.
+```text
+task:
+canon_snapshot:
+user_constraints:
+source_text_or_latest_hook:
+planned_beats:
+draft:
+continuity_findings:
+risk_findings:
+changed_facts:
+durable_preferences:
+memory_patch:
+```
 
-## Write A Chapter
+Common handoffs:
 
-Use the user's requested length. When no length is specified, write a substantial complete chapter appropriate to the existing serial.
+- `continuity-check -> continue-chapter`: canon snapshot, contradictions to avoid, active hooks, character knowledge boundaries.
+- `outline-planning -> continue-chapter`: selected beats, escalation, payoff timing, closing pressure.
+- `continue-chapter -> revise-style`: draft, facts that must remain unchanged, requested tone and length.
+- `compliance-review -> revise-style`: safe rewritten text, plot function to preserve, remaining author decisions.
+- `continue-chapter | revise-style | outline-planning | continuity-check -> memory-update`: changed facts, durable preferences, recent summary, next handoff.
 
-Before drafting a scene or chapter, establish five compact scene notes:
+## Orchestrate Common Workflows
 
-1. surface conflict;
-2. each participating character's immediate desire;
-3. concealed thought or subtext;
-4. concrete action, object, or environmental detail that carries the emotional shift;
-5. closing emotional change and narrative pressure.
+Use these as defaults, then omit unnecessary stages:
 
-When the user asks for a scene and explicitly requests planning first, show these five notes before the prose. For ordinary serial continuation, use them internally and write the chapter directly.
+### Continue A Serial
 
-1. Enter a concrete scene quickly.
-2. Give the protagonist an immediate goal.
-3. Add an obstacle, information gap, choice, or escalation.
-4. Make the protagonist act rather than only receive events.
-5. Show a meaningful consequence or state change.
-6. End with a question, reveal, decision, reversal, or next-step pressure.
-7. Keep paragraphs clear, punctuation complete, dialogue character-specific, and description economical.
+`memory-update/read recovery -> continuity-check -> continue-chapter -> revise-style -> compliance-review when needed -> memory-update/write recovery`
 
-Avoid empty exposition, repeated information, filler, excessive profanity, excessive adjective stacking, and abrupt character changes.
+### Polish Existing Prose
 
-## Write Like A Mature Fiction Author
+`revise-style -> continuity-check when facts may shift -> memory-update when a durable rule changes`
 
-Use restrained, natural prose. Read [references/mature-fiction-style.md](references/mature-fiction-style.md) before drafting prose, revising prose style, or removing AI-like writing.
+### Rewrite Rejected Material
 
-Apply these rules:
+`compliance-review -> revise-style -> continuity-check when the rewrite changes facts -> memory-update when future writing changes`
 
-1. Prefer action, pause, object use, environment, and dialogue mismatch over direct emotional explanation.
-2. Give dialogue subtext. Let characters evade, interrupt, answer only part of a question, or change the subject when appropriate.
-3. Use a few lived-in details that alter the scene, relationship, or decision. Do not decorate paragraphs without function.
-4. Keep language precise and economical. Avoid generic lyrical wording and habitual theme statements.
-5. End scenes on changed behavior, an unresolved object, a line of dialogue, or new pressure. Do not explain the theme at the end.
+### Audit Continuity
 
-After drafting, perform a silent line-edit pass:
+`continuity-check -> memory-update after accepted fixes`
 
-1. Delete or rewrite sentences that directly explain an emotion already visible in the scene.
-2. Delete repeated interpretation after dialogue or action.
-3. Replace vague abstractions with observable details when useful.
-4. Remove generic AI-like transitions, inflated phrasing, adjective stacks, and moralizing endings.
-5. Check that every paragraph changes information, pressure, relationship, choice, or rhythm.
+### Plan An Arc
 
-Deliver only the revised final prose unless the user explicitly requests the draft, edit notes, or before/after comparison.
+`memory-update/read recovery -> continuity-check -> outline-planning -> memory-update/write recovery`
 
-## Preserve Continuity
+## Shared References
 
-After any drafting, revision, outlining, retcon, or feedback-driven optimization that changes future writing, update both project memory and continuity records. Use [references/project-memory-template.md](references/project-memory-template.md) and [references/continuity-template.md](references/continuity-template.md). Keep them compact and include only changed or newly relevant fields.
+Load only the references required by selected components:
 
-Always maintain:
+- [references/mature-fiction-style.md](references/mature-fiction-style.md): shared prose standards.
+- [references/risk-review.md](references/risk-review.md): shared publication-risk taxonomy and safety boundaries.
+- [references/continuity-rules.md](references/continuity-rules.md): shared canon, timeline, hook, and knowledge-boundary rules.
 
-- `创作档案/创作记忆.txt`: short recovery snapshot, durable preferences, output contract, recent feedback optimizations, current arc summary, next handoff, and do-not-break rules;
-- `创作档案/连贯性记录.txt`: detailed canon, character state, timeline, hooks, payoffs, and world rules.
+## Global Boundaries
 
-For long serials, keep the recovery snapshot small enough to read first:
-
-1. Summarize older chapters by arc rather than expanding indefinitely.
-2. Keep recent chapter summaries to one or two sentences each.
-3. Record only active hooks, changed states, and facts needed for later decisions.
-4. Put detailed historical material in the continuity record, not the recovery snapshot.
-5. Include the latest chapter number, exact stopping point, and the intended next scene.
-
-Always preserve:
-
-- protagonist identity, age, values, goals, ability limits, relationship state, and major history;
-- character knowledge boundaries and current locations;
-- event order and unresolved consequences;
-- planted hooks and planned payoffs;
-- hard world rules.
-
-## Recover From Limited Context
-
-When conversation history is incomplete, compacted, or unreliable:
-
-1. Do not continue from memory alone.
-2. Read `创作档案/创作记忆.txt`.
-3. Read `创作档案/连贯性记录.txt`.
-4. Read the latest chapter tail and the full latest chapter when needed.
-5. Read earlier chapters only when a hook, contradiction, or character knowledge boundary requires verification.
-6. State any unresolved ambiguity before making a risky retcon.
-7. Continue from the recorded handoff and update both memory files after writing.
-
-## Reduce Publication Risk
-
-Perform a brief precheck before drafting and a brief self-check after drafting. Read [references/risk-review.md](references/risk-review.md) when the user requests risk review, rejected-chapter rewriting, sensitive-material revision, title review, or copyright-risk reduction.
-
-Use these principles:
-
-- Rewrite risky material at the plot, relationship, setting, and presentation level. Do not merely swap words while preserving the same risky core.
-- Prefer original characters, original settings, original professions, and original institutions.
-- Keep intimate material restrained and focused on emotion, trust, and relationship decisions. Do not provide explicit sexual content or sexualized content involving minors.
-- Keep violence non-graphic. Focus on action, consequences, emotional impact, or lawful intervention rather than injury detail.
-- Do not help evade platform review, conceal prohibited meaning, imitate protected IP closely, or reproduce copyrighted lyrics.
-- For sensitive real-world conflict, use fictionalized settings only when doing so avoids targeting real groups or evading a safety boundary.
-
-## Deliver Cleanly
-
-Match the output to the request. Do not append a long checklist after every ordinary chapter unless the user asks for it or continuity/risk notes are materially useful.
-
-When writing into workspace files, verify the user's durable output contract after drafting, such as chapter count, filename pattern, encoding, required format, and min/max length. Report the verification briefly.
-
-For an explicitly requested standalone scene with planning first, normally output:
-
-1. Five compact scene notes.
-2. Revised final prose after the silent AI-like sentence cleanup.
-
-For a chapter request, normally output:
-
-1. Chapter title.
-2.正文.
-3. A short continuity update when needed.
-4. A short risk note only when needed.
-
-For a risk review, output:
-
-1. Risk level: `low`, `medium`, `high`, or `cannot assist`.
-2. Risk categories and locations.
-3. Rewrite principles.
-4. Revised version or safe alternative.
-5. Remaining author decisions.
-
-## Ask Sparingly
-
-Ask at most three questions when missing information prevents a useful result:
-
-1. What genre is the novel?
-2. Who is the protagonist and what is the core goal?
-3. Which chapter or plot segment should be written?
-
-If the user asks to start immediately, choose an original adult protagonist, an original fictional setting, a clear growth conflict, and a chapter structure with a hook, escalation, turn, and closing pressure.
+- Write original fiction. Do not closely imitate a living author's distinctive style or reproduce protected material.
+- Improve publishability without helping evade review, conceal prohibited meaning, or preserve a risky core through word substitution.
+- Keep intimate material restrained and adult-only. Keep violence non-graphic.
+- Prefer concrete prose, subtext, and lived-in detail over generic explanation and moralizing conclusions.
+- Verify workspace output contracts such as encoding, filename pattern, chapter count, and requested min/max length after writing files.

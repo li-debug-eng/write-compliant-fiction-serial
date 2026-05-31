@@ -47,14 +47,6 @@ Check titles, synopsis text, and chapter names for crude phrasing, sexual sugges
 
 Rewrite toward character goals, suspense, conflict, growth, decisions, reversals, or fate changes.
 
-## Rewrite Method
-
-1. Identify the actual risky core.
-2. Decide whether to delete, soften, age up, fictionalize, change the relationship, change the stakes, or replace the scene.
-3. Rewrite the scene so the new plot still advances.
-4. Check that the rewrite remains readable and does not preserve the old meaning through coded wording.
-5. State any remaining author decision briefly.
-
 ## Refusal Pattern
 
 Keep refusals short:
@@ -62,4 +54,3 @@ Keep refusals short:
 ```text
 我不能帮助保留违规核心或规避审核。可以把这段改成不依赖露骨细节的关系推进、冲突升级或转场留白，并保留本章需要的剧情结果。
 ```
-
