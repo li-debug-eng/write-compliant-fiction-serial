@@ -1,0 +1,4 @@
+interface:
+  display_name: "成熟文风合规小说连载"
+  short_description: "按反馈持续优化连载，以克制文风写作并自动维护剧情记忆"
+  default_prompt: "Use $write-compliant-fiction-serial to write or revise a Chinese serial novel with mature restrained prose, subtext, silent AI-like sentence cleanup, and compact continuity memory."
