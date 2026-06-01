@@ -45,6 +45,43 @@ Do not run for ordinary sentence-level polish with no durable learning.
 6. Format a single structured patch.
 7. Pass the patch and a concise reason to `memory-manager`.
 
+## Optimization Update Standard
+
+Record `optimization_updates` only when they are reusable for the resolved novel project and either proved effective in the task or were explicitly preferred by the user.
+
+Suitable optimization updates include:
+
+- project-specific pacing patterns;
+- hook-management and payoff-timing rules;
+- relationship-escalation methods;
+- prose texture preferences, including when to preserve lived-in detail;
+- chapter-ending strategies;
+- structural anti-patterns to avoid;
+- known revision preferences for this novel.
+
+Do not store:
+
+- ordinary one-time beat choices;
+- temporary wording preferences;
+- speculative plans not accepted by the user;
+- generic writing advice;
+- cross-project style assumptions.
+
+Examples that may be stored:
+
+- This novel works better when supernatural clues are introduced through practical sensory details before explicit explanation.
+- For this project, chapter endings should prefer quiet dread or practical danger over loud cliffhangers.
+- The user prefers preserving small lived-in details during style revision when they reveal character habit or social texture.
+- Relationship escalation in this novel should happen through favors, withheld information, and small tests rather than direct confession.
+
+Examples that should not be stored:
+
+- Chapter 3 should include a market scene.
+- The protagonist buys a knife.
+- Add more description.
+- Make the prose better.
+- The next chapter may introduce a new enemy.
+
 ## Output Contract
 
 Return:

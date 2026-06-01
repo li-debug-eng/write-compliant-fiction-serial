@@ -182,6 +182,8 @@ Common handoffs:
 
 Only [skills/memory-update.md](skills/memory-update.md) generates the final `memory_patch`.
 
+When a component Output Contract introduces a durable handoff field such as `issue_updates`, `optimization_updates`, `changed_facts`, or `durable_changes_for_memory_update`, its Handoff section should explicitly state whether and when that field is sent to `memory-update` or another downstream component. Do not leave durable fields declared without a handoff path.
+
 ## Orchestrate Common Workflows
 
 ### 1. Continue Existing Chapters

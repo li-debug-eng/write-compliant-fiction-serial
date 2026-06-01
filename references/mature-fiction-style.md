@@ -40,6 +40,24 @@ Use direct cognition only when:
 - the sentence is brief and not followed by explanatory repetition;
 - no concrete external cue would carry the same meaning better.
 
+## Human Texture Pass
+
+Before finalizing prose, preserve 1-3 harmless lived-in details when they reveal habit, class background, fatigue, taste, embarrassment, local life, routine, bodily reality, or relationship texture.
+
+Do not over-compress all hesitation, small talk, repeated gestures, awkward pauses, evasive answers, or partial answers. Keep them when they reveal character rather than merely filling space.
+
+Let characters sometimes make partial, practical, emotionally evasive, face-saving, tired, or imperfect choices. Avoid making every choice feel like the optimal plot move.
+
+A scene may breathe through ordinary action: eating, waiting, washing, carrying objects, checking money, avoiding eye contact, repairing something, bargaining, saving face, misjudging someone, or handling a small practical problem under pressure.
+
+Avoid turning every paragraph into a perfectly efficient information unit. Fiction can breathe when the breath belongs to a person.
+
+Do not preserve idle filler by default. Keep lived-in detail only when it deepens character, social texture, sensory reality, relationship pressure, or scene rhythm.
+
+AI-like prose is not only caused by obvious cliches or over-explanation. It can also appear when revision removes all ordinary friction, hesitation, local texture, and imperfect human rhythm.
+
+Mature prose should be selective, not sterile. It should remove generic filler while preserving details that make a person, place, class position, habit, fatigue, or relationship feel lived-in.
+
 ## Shared Standard
 
 Apply these rules during drafting and revision. Keep task-specific workflow in the selected component rather than this reference.
