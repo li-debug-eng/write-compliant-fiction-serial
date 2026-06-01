@@ -2,7 +2,7 @@ interface:
   display_name: "模块化合规小说连载"
   short_description: "按单部小说隔离创作记忆，并按任务需要编排续写、润色与审查组件"
   default_prompt: >
-    Use $write-compliant-fiction-serial and its SKILL.md as a modular router.
+    Use the write-compliant-fiction-serial skill and its SKILL.md as a modular router.
     Resolve one isolated novel_id through memory-manager before durable memory
     access, load only the components needed for the request, let memory-update
     generate patches only, never run the full component chain by default, and

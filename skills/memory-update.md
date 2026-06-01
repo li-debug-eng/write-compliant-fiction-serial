@@ -47,7 +47,9 @@ Do not run for ordinary sentence-level polish with no durable learning.
 
 ## Optimization Update Standard
 
-Record `optimization_updates` only when they are reusable for the resolved novel project and either proved effective in the task or were explicitly preferred by the user.
+Record `optimization_updates` only when they are reusable for the resolved novel
+project and either proved effective in the task or were explicitly preferred by
+the user.
 
 Suitable optimization updates include:
 

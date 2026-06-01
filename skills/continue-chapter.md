@@ -2,7 +2,9 @@
 
 ## Purpose
 
-Draft new simplified-Chinese serial-fiction prose: the next chapter, a requested chapter range, or a standalone scene. Preserve existing canon and move the story state forward.
+Draft new simplified-Chinese serial-fiction prose: the next chapter, a requested
+chapter range, or a standalone scene. Preserve existing canon and move the story
+state forward.
 
 ## Use When
 
@@ -13,7 +15,8 @@ Draft new simplified-Chinese serial-fiction prose: the next chapter, a requested
 
 - `novel_id`, `novel_name`, and the continuation memory bundle from `memory-manager`.
 - User constraints: chapter count, target length, tone, viewpoint, format, and delivery path when specified.
-- `canon_snapshot`: protagonist state, location, relationships, ability limits, resources, active hooks, knowledge boundaries, and next pressure.
+- `canon_snapshot`: protagonist state, location, relationships, ability limits,
+  resources, active hooks, knowledge boundaries, and next pressure.
 - Latest chapter tail or scene handoff.
 - Relevant durable project preferences.
 
@@ -29,15 +32,25 @@ If the existing serial context is insufficient, return a short missing-context l
 
 1. Recover the compact context required for the requested range.
 2. Read [../references/mature-fiction-style.md](../references/mature-fiction-style.md).
-3. Before each scene, establish internally: surface conflict, each participant's immediate desire, subtext, the concrete carrier of the shift, and the closing emotional change. Show these notes only when requested.
+3. Before each scene, establish internally: surface conflict, each participant's
+   immediate desire, subtext, the concrete carrier of the shift, and the closing
+   emotional change. Show these notes only when requested.
 4. Enter a concrete scene quickly. Do not open with an exposition dump.
 5. Give the protagonist an immediate goal and an obstacle, information gap, choice, or escalation.
 6. Make the protagonist act. Change at least one story state: resource, relationship, knowledge, risk, location, or next pressure.
 7. End on an action, reveal, incomplete reply, decision, reversal, or new pressure. Do not summarize the theme.
 8. For multi-chapter requests, give each chapter its own immediate goal and state change.
-9. Not every breathing scene needs a major reversal. A scene may earn its place by revealing how a character eats, waits, lies, avoids, saves face, misjudges, repairs, bargains, remembers, or handles a small practical problem under pressure.
-10. Do not make every protagonist action feel perfectly optimized. Allow reasonable hesitation, incomplete information, emotional avoidance, class-limited choices, fatigue, small mistakes, or face-saving behavior when they deepen character and do not break canon.
-11. A low-action scene is acceptable when it changes the reader's understanding of a character, relationship, setting, threat, resource constraint, or future decision.
+9. Not every breathing scene needs a major reversal. A scene may earn its place
+   by revealing how a character eats, waits, lies, avoids, saves face,
+   misjudges, repairs, bargains, remembers, or handles a small practical problem
+   under pressure.
+10. Do not make every protagonist action feel perfectly optimized. Allow
+    reasonable hesitation, incomplete information, emotional avoidance,
+    class-limited choices, fatigue, small mistakes, or face-saving behavior when
+    they deepen character and do not break canon.
+11. A low-action scene is acceptable when it changes the reader's understanding
+    of a character, relationship, setting, threat, resource constraint, or
+    future decision.
 12. Verify requested length with `count_chinese_chars(text)` when available, otherwise use a deterministic local count.
 
 ## Output Contract
@@ -62,8 +75,20 @@ verification_needed:
 
 - Send `draft`, immutable facts, tone, and length target to `revise-style`.
 - Send risky material to `compliance-review` only when needed.
-- Send changed facts, recent summaries, hooks, issues, verified optimizations, and next handoff to `memory-update` after accepted or workspace-written changes.
-- Pass `optimization_updates` to `memory-update` only when the drafting session proves or confirms a reusable project-specific strategy, such as a chapter ending pattern, a relationship-escalation method, or a way of introducing clues through practical sensory detail. Do not persist one-off scene beats as optimization strategies.
+- Send changed facts, recent summaries, hooks, issues, verified optimizations,
+  and next handoff to `memory-update` after accepted or workspace-written
+  changes.
+- Pass `changed_facts` to `memory-update` after accepted or workspace-written
+  drafts; pass them to `continuity-check` first when the change may conflict
+  with canon.
+- Pass `issue_updates` to `memory-update` only for repeated drafting problems,
+  user-identified problems, or component-detected issues that should affect
+  future chapters for this novel.
+- Pass `optimization_updates` to `memory-update` only when the drafting session
+  proves or confirms a reusable project-specific strategy, such as a chapter
+  ending pattern, a relationship-escalation method, or a way of introducing
+  clues through practical sensory detail. Do not persist one-off scene beats as
+  optimization strategies.
 - Ask `continuity-check` for a targeted pass before drafting when canon is unclear.
 - Ask `memory-manager` for the continuation bundle before writing an existing serial.
 

@@ -50,7 +50,10 @@ remaining_author_decisions:
 ## Handoff To Other Components
 
 - Send `safe_rewrite`, preserved plot function, and remaining author decisions to `revise-style`.
-- Send `changed_facts` to `continuity-check` and `memory-update` when canon changes.
+- Send `changed_facts` to `continuity-check` and `memory-update` when canon
+  changes. Do not send `changed_facts` when the safe rewrite only changes
+  wording, tone, or presentation without altering durable plot, relationship,
+  setting, or character facts.
 - Ask `memory-manager` for the review bundle before reviewing an established novel.
 
 ## Do Not Do

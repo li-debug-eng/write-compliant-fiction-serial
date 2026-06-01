@@ -8,6 +8,7 @@
 
 ```text
 write-compliant-fiction-serial/
+├─ .gitattributes
 ├─ SKILL.md
 ├─ README.md
 ├─ agents/
@@ -202,7 +203,7 @@ memory-manager/select+read planning bundle
 
 ## Agent Configuration
 
-`agents/openai.yaml` 是可选的 agent 配置入口。它用于让支持该入口的客户端展示 Skill，并提供与主路由一致的默认提示词。
+`agents/openai.yaml` 是可选的 OpenAI / Codex agent 配置入口。它用于让支持该入口的客户端展示 Skill，并提供与主路由一致的默认提示词。
 
 该文件不承载独立的写作、合规、记忆或路由规则，也不应覆盖模块化组件。更新时应保持以下原则：
 
@@ -213,19 +214,41 @@ memory-manager/select+read planning bundle
 - 不默认运行全部组件；
 - MCP 仅作为可选的读取、搜索、统计与追加式持久化工具层，不用于生成正文。
 
+Claude Code 不会把 `agents/openai.yaml` 作为 Skill 配置入口使用；Claude Code 主要读取 `SKILL.md`，并按目录名生成 `/write-compliant-fiction-serial` 调用入口。
+
+## 双平台兼容约定
+
+- `SKILL.md` 的 YAML frontmatter 只保留 `name` 和 `description`，同时满足 Codex 与 Claude Code 的基本加载要求。
+- `skills/` 和 `references/` 是两个客户端共用的运行资料，不写客户端专属逻辑。
+- `agents/openai.yaml` 只作为 OpenAI / Codex 侧展示和默认提示词入口，不承担业务规则。
+- MCP 工具层是可选能力。没有 MCP 时，Skill 仍应通过本地项目文件或可复制的 `## Memory Patch` 工作。
+- 安装目录名和本地调用名称必须保持 `write-compliant-fiction-serial`。Codex 可用 `$write-compliant-fiction-serial`，Claude Code 可用 `/write-compliant-fiction-serial`，但二者都指向同一个 Skill 名称。
+- 仓库使用 `.gitattributes` 固定 Markdown、YAML 和 TXT 的 LF 换行，减少 Windows 与 macOS/Linux 之间的无意义 diff。
+
 ## 安装
 
-### OpenAI Codex CLI
+### OpenAI Codex / Codex CLI
 
 ```powershell
+$codexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME ".codex" }
+$skillDir = Join-Path $codexHome "skills\write-compliant-fiction-serial"
+New-Item -ItemType Directory -Force (Split-Path $skillDir) | Out-Null
 git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git `
-  "$HOME\.codex\skills\write-compliant-fiction-serial"
+  $skillDir
 ```
 
 更新：
 
 ```powershell
-git -C "$HOME\.codex\skills\write-compliant-fiction-serial" pull
+$codexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME ".codex" }
+git -C (Join-Path $codexHome "skills\write-compliant-fiction-serial") pull
+```
+
+使用：
+
+```text
+Skill 名称：write-compliant-fiction-serial
+Codex 调用：$write-compliant-fiction-serial
 ```
 
 ### Claude Code
@@ -235,6 +258,7 @@ git -C "$HOME\.codex\skills\write-compliant-fiction-serial" pull
 macOS / Linux:
 
 ```bash
+mkdir -p "$HOME/.claude/skills"
 git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git \
   "$HOME/.claude/skills/write-compliant-fiction-serial"
 ```
@@ -242,8 +266,10 @@ git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git \
 Windows PowerShell:
 
 ```powershell
+$skillDir = Join-Path $env:USERPROFILE ".claude\skills\write-compliant-fiction-serial"
+New-Item -ItemType Directory -Force (Split-Path $skillDir) | Out-Null
 git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git `
-  "$env:USERPROFILE\.claude\skills\write-compliant-fiction-serial"
+  $skillDir
 ```
 
 **项目级安装（仅当前项目可用）：**
@@ -255,14 +281,37 @@ git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git \
   .claude/skills/write-compliant-fiction-serial
 ```
 
+Windows PowerShell:
+
+```powershell
+# 在某小说项目根目录下
+New-Item -ItemType Directory -Force ".claude\skills" | Out-Null
+git clone https://github.com/li-debug-eng/write-compliant-fiction-serial.git `
+  ".claude\skills\write-compliant-fiction-serial"
+```
+
 **更新：**
+
+macOS / Linux:
 
 ```bash
 git -C "$HOME/.claude/skills/write-compliant-fiction-serial" pull
 ```
 
+Windows PowerShell:
+
+```powershell
+git -C "$env:USERPROFILE\.claude\skills\write-compliant-fiction-serial" pull
+```
+
+项目级安装的更新：
+
+```bash
+git -C .claude/skills/write-compliant-fiction-serial pull
+```
+
 **使用：**
 
-在 Claude Code 会话中通过 `/write-compliant-fiction-serial` 调用，或直接描述任务（如"续写下一章"、"润色这段"、"检查连贯性"），Claude Code 会自动匹配并加载该 Skill。
+本地 Skill 名称为 `write-compliant-fiction-serial`。在 Claude Code 会话中通过 `/write-compliant-fiction-serial` 调用，或直接描述任务（如"续写下一章"、"润色这段"、"检查连贯性"），Claude Code 会自动匹配并加载该 Skill。
 
-> **兼容性说明：** 本 Skill 同时兼容 OpenAI Codex CLI 和 Claude Code。`SKILL.md` 的 YAML frontmatter 采用 Codex 格式（`name` + `description`），同时满足 Claude Code 的 Skill 加载要求。`skills/`、`references/` 目录对两个平台通用。`agents/openai.yaml` 仅用于 Codex CLI，Claude Code 会忽略该文件。
+> **兼容性说明：** 本 Skill 同时兼容 OpenAI Codex / Codex CLI 和 Claude Code。`SKILL.md` 的 YAML frontmatter 采用最小公共格式（`name` + `description`）。`skills/`、`references/` 目录对两个平台通用。`agents/openai.yaml` 仅用于 OpenAI / Codex 侧展示和默认提示词；Claude Code 不会把它作为 Skill 配置入口使用。

@@ -54,7 +54,9 @@ issue_updates:
 ## Handoff To Other Components
 
 - Send the canon snapshot, active hooks, and knowledge boundaries to `continue-chapter` or `outline-planning`.
-- Send accepted fixes, record patches, and repeated issue updates to `memory-update`.
+- Send accepted fixes, record patches, and repeated `issue_updates` to
+  `memory-update`. Do not send an `issue_update` for a one-off contradiction
+  unless the user accepts a durable repair or asks to remember the problem.
 - Return fact-sensitive prose to `revise-style` only when wording repairs are needed.
 - Ask `memory-manager` for the canon bundle before checking an established novel.
 

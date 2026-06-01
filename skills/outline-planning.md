@@ -23,7 +23,8 @@ Plan chapters, arcs, pacing, conflict escalation, choices, consequences, hooks, 
 
 ## Procedure
 
-1. For a new novel, establish an original protagonist, supporting cast, world rules, core conflict, relationship line, volume direction, and opening beats.
+1. For a new novel, establish an original protagonist, supporting cast, world
+   rules, core conflict, relationship line, volume direction, and opening beats.
 2. For an existing serial, preserve fixed canon and retrieve unresolved questions before planning.
 3. Define the stage goal and the protagonist's concrete short-term need.
 4. Break the range into beats with goal, pressure, action, consequence, and closing hook.
@@ -31,8 +32,15 @@ Plan chapters, arcs, pacing, conflict escalation, choices, consequences, hooks, 
 6. Advance planted hooks gradually. Do not pay off every mystery immediately.
 7. Respect power progression and knowledge boundaries.
 8. Mark new hooks, payoff windows, and answers that should remain deferred.
-9. When planning scenes, include a character-activity anchor when appropriate: what the character is doing with their hands, what practical problem they are handling, what they avoid saying, what they misunderstand, what they cannot afford, what they are tired of, or what small habit leaks through under pressure.
-10. Avoid planning only plot functions such as `discover clue`, `fight enemy`, `reveal secret`, or `increase tension`. Where useful, attach the plot function to a lived action, social exchange, resource constraint, bodily detail, or relationship pressure.
+9. When planning scenes, include a character-activity anchor when appropriate:
+   what the character is doing with their hands, what practical problem they are
+   handling, what they avoid saying, what they misunderstand, what they cannot
+   afford, what they are tired of, or what small habit leaks through under
+   pressure.
+10. Avoid planning only plot functions such as `discover clue`, `fight enemy`,
+    `reveal secret`, or `increase tension`. Where useful, attach the plot
+    function to a lived action, social exchange, resource constraint, bodily
+    detail, or relationship pressure.
 
 ## Output Contract
 
@@ -60,8 +68,13 @@ optimization_updates:
 - Send `durable_changes_for_memory_update` to `memory-update` when the user
   accepts long-range direction, new hooks, payoff windows, deferred answers,
   volume structure, stage summaries, pacing rules, or durable outline decisions.
-- Pass `optimization_updates` to `memory-update` when a planning session produces reusable pacing, structural, hook-management, payoff-timing, relationship-escalation, or chapter-ending insights.
-- Only pass planning optimizations that are reusable for the resolved novel project. Do not persist one-off beat choices, temporary bridges, unaccepted speculative plans, ordinary outline nodes, or generic writing advice as optimization strategies.
+- Pass `optimization_updates` to `memory-update` when a planning session
+  produces reusable pacing, structural, hook-management, payoff-timing,
+  relationship-escalation, or chapter-ending insights.
+- Only pass planning optimizations that are reusable for the resolved novel
+  project. Do not persist one-off beat choices, temporary bridges, unaccepted
+  speculative plans, ordinary outline nodes, or generic writing advice as
+  optimization strategies.
 - Ask `continuity-check` to resolve canon questions before planning around them.
 - Ask `memory-manager` for the planning bundle before planning an established novel.
 
@@ -84,5 +97,7 @@ The protagonist discovers the soil is abnormal and reports it.
 Stronger beat:
 
 ```text
-The protagonist notices the abnormal soil while trying to finish morning watering before inspection, tests it with chipped bowls because he lacks proper tools, and reports only half the truth to avoid sounding superstitious.
+The protagonist notices the abnormal soil while trying to finish morning
+watering before inspection, tests it with chipped bowls because he lacks proper
+tools, and reports only half the truth to avoid sounding superstitious.
 ```

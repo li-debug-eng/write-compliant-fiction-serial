@@ -2,7 +2,9 @@
 
 ## Purpose
 
-Polish existing prose without changing its intended plot function. Mature the voice, reduce AI-like habits, compress repetition, improve subtext, and preserve factual continuity.
+Polish existing prose without changing its intended plot function. Mature the
+voice, reduce AI-like habits, compress repetition, improve subtext, and preserve
+factual continuity.
 
 ## Use When
 
@@ -30,13 +32,26 @@ Polish existing prose without changing its intended plot function. Mature the vo
 3. Replace direct emotional explanation with action, pause, object use, environment, or dialogue mismatch where possible.
 4. Shorten dialogue that explains too much. Allow evasion, interruption, and partial answers.
 5. Delete repeated interpretation after an already-clear action or line.
-6. Remove purely ornamental detail, but preserve lived-in detail when it builds social texture, bodily reality, class background, routine, embarrassment, fatigue, taste, relationship pressure, or character habit.
-7. Before deleting a small detail, ask whether it reveals habit, class, fatigue, taste, relationship pressure, embarrassment, local life, or bodily reality. If yes, preserve or sharpen it rather than removing it.
-8. Do not automatically delete hesitation, repeated gestures, evasive phrasing, small talk, unfinished sentences, or awkward pauses. Compress them only when they repeat information, flatten tension, or fail to reveal character.
+6. Remove purely ornamental detail, but preserve lived-in detail when it builds
+   social texture, bodily reality, class background, routine, embarrassment,
+   fatigue, taste, relationship pressure, or character habit.
+7. Before deleting a small detail, ask whether it reveals habit, class, fatigue,
+   taste, relationship pressure, embarrassment, local life, or bodily reality.
+   If yes, preserve or sharpen it rather than removing it.
+8. Do not automatically delete hesitation, repeated gestures, evasive phrasing,
+   small talk, unfinished sentences, or awkward pauses. Compress them only when
+   they repeat information, flatten tension, or fail to reveal character.
 9. Remove generic lyrical phrasing, mechanical contrast patterns, adjective stacks, and moralizing endings.
-10. When revising for maturity, do not make every sentence equally polished. Allow controlled roughness when it belongs to the viewpoint character, social setting, fatigue, fear, class background, or emotional avoidance.
-11. Do not polish every character into the same mature narrative voice. Preserve differences in education, class background, temperament, fatigue, confidence, evasiveness, bluntness, and local speech rhythm.
-12. When improving dialogue, do not make every line perfectly direct. Characters may dodge, answer the wrong part, repeat a phrase, change the subject, use practical excuses, or speak in half-sentences when it fits the relationship and scene pressure.
+10. When revising for maturity, do not make every sentence equally polished.
+    Allow controlled roughness when it belongs to the viewpoint character,
+    social setting, fatigue, fear, class background, or emotional avoidance.
+11. Do not polish every character into the same mature narrative voice. Preserve
+    differences in education, class background, temperament, fatigue,
+    confidence, evasiveness, bluntness, and local speech rhythm.
+12. When improving dialogue, do not make every line perfectly direct.
+    Characters may dodge, answer the wrong part, repeat a phrase, change the
+    subject, use practical excuses, or speak in half-sentences when it fits the
+    relationship and scene pressure.
 13. Read once for repetitive sentence shapes and unnatural rhythm.
 14. Recheck length when the user set a range.
 
@@ -60,8 +75,16 @@ Output only revised prose unless the user requests notes or comparison.
 ## Handoff To Other Components
 
 - Send `possible_fact_changes` to `continuity-check`.
-- Send durable user preferences, recurring issues, and verified project-specific strategies to `memory-update`.
-- Pass `optimization_updates` only when the revision surfaces a reusable project-specific strategy that worked or was explicitly preferred by the user, such as preserving lived-in details, handling relationship subtext, or shaping chapter endings. Do not pass one-off wording choices or generic style advice as optimization updates.
+- Send durable user preferences, recurring issues, and verified
+  project-specific strategies to `memory-update`.
+- Pass `issue_updates` to `memory-update` only for repeated, user-identified,
+  or review-discovered revision problems that should affect future work on the
+  resolved novel project; do not pass one-off sentence fixes as issues.
+- Pass `optimization_updates` only when the revision surfaces a reusable
+  project-specific strategy that worked or was explicitly preferred by the user,
+  such as preserving lived-in details, handling relationship subtext, or shaping
+  chapter endings. Do not pass one-off wording choices or generic style advice
+  as optimization updates.
 - Return risky content to `compliance-review` when polish alone cannot make it safe.
 - Ask `memory-manager` for the revision bundle before revising an established novel.
 
@@ -81,3 +104,4 @@ Output only revised prose unless the user requests notes or comparison.
 - Did it remove only generic filler rather than lived-in detail?
 - Did it preserve distinct character voice rather than smoothing everyone into the same tone?
 - Did any new `optimization_updates` describe reusable project-specific strategy rather than one-off plot beats?
+- Does every durable Output Contract field used in this revision have a clear Handoff path?
